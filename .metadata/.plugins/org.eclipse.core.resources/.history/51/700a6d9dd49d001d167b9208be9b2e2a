@@ -1,0 +1,96 @@
+package test;
+
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+
+public class NewTest {	
+	
+	  public static WebDriver driver;
+	  public static WebDriverWait wait;
+	  public static Actions action;
+
+	  @BeforeClass
+	  public static void setUp() {
+	      System.setProperty("webdriver.chrome.driver", "C:/Users/netan/Desktop/testng/chromedriver_win32/chromedriver.exe");
+	      driver = new ChromeDriver();
+	      driver.manage().window().maximize();
+	      driver.get("https://ironscales.com/");
+	      wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	      action = new Actions(driver);
+	  }
+
+	  @Test
+	  public void test1() {
+//		  WebElement solutionNavLink = driver.findElement(By.xpath("//*[@id=\"navbar_global\"]/div/ul[1]/li[1]/a"));
+//		  action.moveToElement(solutionNavLink).perform();
+//		  WebElement byPlanDropdown = driver.findElement(By.xpath("//*[@id=\"navbar_global\"]/div/ul[1]/li[1]/ul/li[2]/a"));
+//		  action.moveToElement(byPlanDropdown).perform();
+//		  List<WebElement> optionsElement = driver.findElements(By.xpath("//*[@id=\"navbar_global\"]/div/ul[1]/li[1]/ul/li[2]/ul/li"));
+//		  List<String> actualOptions = new ArrayList<String>();
+//		  
+//		  for(WebElement element : optionsElement)
+//			  actualOptions.add(element.getText());
+//		  
+//		  List<String> expectedOptions = new ArrayList<String>();
+//		  expectedOptions.add("Starter™");
+//		  expectedOptions.add("Email Protect™");
+//		  expectedOptions.add("Complete Protect™");
+//		  
+//		  Assert.assertEquals(actualOptions, expectedOptions);
+	  }
+	  
+	  @Test
+	  public void test2() {
+		  
+		  // hover over "company"
+		  WebElement companyNavLink = driver.findElement(By.xpath("//*[@id=\"navbar_global\"]/div/ul[1]/li[6]/a"));
+		  action.moveToElement(companyNavLink).perform(); 
+		  
+		  // click on "careers".
+		  String careersPath = "//*[@id=\"navbar_global\"]/div/ul[1]/li[6]/ul/li[7]/a";
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(careersPath)));
+		  driver.findElement(By.xpath(careersPath)).click();
+		  
+		  // click on "job opening.
+		  driver.findElement(By.xpath("//*[@id=\"hs_cos_wrapper_widget_1633015557676\"]/div/div/div[2]/div/div/div/div/div/div/div/div[1]/a")).click();
+		  
+		  // send keys to search input
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"SearchInput\"]")));
+		  WebElement searchInputElement = driver.findElement(By.xpath("//*[@id=\"SearchInput\"]"));
+		  action.moveToElement(searchInputElement).perform();
+		  searchInputElement.sendKeys("QA automation");
+		  
+		  // click on the position
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"Opportunity0\"]/div[1]/div[1]/h3/a")));
+		  driver.findElement(By.xpath("//*[@id=\"Opportunity0\"]/div[1]/div[1]/h3/a")).click();		  
+		  
+		  // find the requirement
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"opportunityDetailView\"]/div[2]/div/div/div/div[2]/div[1]/div[3]/p/ul[2]")));
+		  Point requirements = driver.findElement(By.xpath("//*[@id=\"opportunityDetailView\"]/div[2]/div/div/div/div[2]/div[1]/div[3]/p/ul[2]")).getLocation();
+		  System.out.println("requirements = " + requirements);
+		  
+		  try { Thread.sleep(1500); } catch (InterruptedException e) { e.printStackTrace(); }
+	  }
+	  
+	  @AfterClass
+	  public static void closeBrowser() {
+		  driver.quit();
+	  }
+
+}

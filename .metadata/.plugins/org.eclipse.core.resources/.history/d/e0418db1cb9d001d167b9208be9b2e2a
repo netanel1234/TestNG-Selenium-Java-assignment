@@ -1,0 +1,82 @@
+package test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+
+public class NewTest {	
+	
+	  public static WebDriver driver;
+
+	  @BeforeClass
+	  public static void setUp() {
+	      System.setProperty("webdriver.chrome.driver", "C:/Users/netan/Desktop/testng/chromedriver_win32/chromedriver.exe");
+	      driver = new ChromeDriver();
+	      driver.manage().window().maximize();
+	      driver.get("https://ironscales.com/");
+	  }
+
+	  @Test
+	  public void test1() {
+//		  WebElement solutionNavLink = driver.findElement(By.xpath("//*[@id=\"navbar_global\"]/div/ul[1]/li[1]/a"));
+//		  Actions action = new Actions(driver);
+//		  action.moveToElement(solutionNavLink).perform();
+//		  WebElement byPlanDropdown = driver.findElement(By.xpath("//*[@id=\"navbar_global\"]/div/ul[1]/li[1]/ul/li[2]/a"));
+//		  action.moveToElement(byPlanDropdown).perform();
+//		  List<WebElement> optionsElement = driver.findElements(By.xpath("//*[@id=\"navbar_global\"]/div/ul[1]/li[1]/ul/li[2]/ul/li"));
+//		  List<String> actualOptions = new ArrayList<String>();
+//		  
+//		  for(WebElement element : optionsElement)
+//			  actualOptions.add(element.getText());
+//		  
+//		  List<String> expectedOptions = new ArrayList<String>();
+//		  expectedOptions.add("Starter™");
+//		  expectedOptions.add("Email Protect™");
+//		  expectedOptions.add("Complete Protect™");
+//		  
+//		  Assert.assertEquals(actualOptions, expectedOptions);
+	  }
+	  
+	  @Test
+	  public void test2() {
+		  WebElement companyNavLink = driver.findElement(By.xpath("//*[@id=\"navbar_global\"]/div/ul[1]/li[6]/a"));
+		  Actions action = new Actions(driver);
+		  
+		  // hover over "company".
+		  action.moveToElement(companyNavLink).perform(); 
+		  // click on "careers".
+		  driver.findElement(By.xpath("//*[@id=\"navbar_global\"]/div/ul[1]/li[6]/ul/li[7]/a")).click();
+		  // click on "job opening.
+		  driver.findElement(By.xpath("//*[@id=\"hs_cos_wrapper_widget_1633015557676\"]/div/div/div[2]/div/div/div/div/div/div/div/div[1]/a")).click();
+		  // insert to search input
+		  WebElement searchInputElement = driver.findElement(By.xpath("//*[@id=\"SearchInput\"]"));
+		  action.moveToElement(driver.findElement(By.xpath("//*[@id=\"SearchInput\"]"))).perform();
+//		  driver.findElement(By.xpath("//*[@id=\"SearchInput\"]")).click();
+		  try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+//		  driver.findElement(By.id("SearchInput")).sendKeys("QA automation");
+//		  driver.findElement(By.xpath("//*[@id=\"Opportunity0\"]/div[1]/div[1]/h3/a")).click();
+//		  List<WebElement> requirementsList = driver.findElements(By.xpath("//*[@id=\"opportunityDetailView\"]/div[2]/div/div/div/div[2]/div[1]/div[3]/p/ul[2]"));
+//		  System.out.println(requirementsList.size());
+	  }
+	  
+	  @AfterClass
+	  public static void closeBrowser() {
+		  driver.quit();
+	  }
+
+}

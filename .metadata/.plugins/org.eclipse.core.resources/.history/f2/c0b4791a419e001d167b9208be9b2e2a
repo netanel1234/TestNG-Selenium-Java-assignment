@@ -1,0 +1,190 @@
+package test;
+
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+
+public class NewTest {	
+	
+	  public static WebDriver driver;
+	  public static WebDriverWait wait;
+	  public static Actions action;
+
+	  @BeforeClass
+	  public static void setUp() {
+	      System.setProperty("webdriver.chrome.driver", "C:/Users/netan/Desktop/testng/chromedriver_win32/chromedriver.exe");
+	      driver = new ChromeDriver();
+	      driver.manage().window().maximize();
+	      driver.get("https://ironscales.com/");
+	      wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+	      action = new Actions(driver);
+	  }
+
+	  @Test
+	  public void testNavBar_Options() {
+		  // Hover over "solution"
+		  String solutionXPath = "//*[@id=\"navbar_global\"]/div/ul[1]/li[1]/a";
+		  WebElement solutionElement = driver.findElement(By.xpath(solutionXPath));
+		  action.moveToElement(solutionElement).perform();
+		  
+		  // Hover over "By Plan"
+		  String byPlanXPath = "//*[@id=\"navbar_global\"]/div/ul[1]/li[1]/ul/li[2]/a";
+		  WebElement byPlanDropdown = driver.findElement(By.xpath(byPlanXPath));
+		  action.moveToElement(byPlanDropdown).perform();
+		  
+		  // Extracting the options list
+		  String optionsXPath = "//*[@id=\"navbar_global\"]/div/ul[1]/li[1]/ul/li[2]/ul/li";
+		  List<WebElement> optionsElement = driver.findElements(By.xpath(optionsXPath));
+		  List<String> actualOptions = new ArrayList<String>();
+		  for(WebElement element : optionsElement)
+			  actualOptions.add(element.getText());
+		  
+		  List<String> expectedOptions = new ArrayList<String>();
+		  expectedOptions.add("Starter™");
+		  expectedOptions.add("Email Protect™");
+		  expectedOptions.add("Complete Protect™");
+		  
+		  // Validation
+		  Assert.assertEquals(expectedOptions, actualOptions);
+	  }
+	  
+	  @Test
+	  public void testValidate_Years_Of_Experience_For_QA_Automation_Position() {
+		  // Hover over "company"
+		  String companyXPath = "//*[@id=\"navbar_global\"]/div/ul[1]/li[6]/a";
+		  WebElement companyElement = driver.findElement(By.xpath(companyXPath));
+		  action.moveToElement(companyElement).perform(); 
+		  
+		  // Click on "careers"
+		  String careersXPath = "//*[@id=\"navbar_global\"]/div/ul[1]/li[6]/ul/li[7]/a";
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(careersXPath)));
+		  driver.findElement(By.xpath(careersXPath)).click();
+		  
+		  // Click on "job opening"
+		  String jobOpeningsXPath = "//*[@id=\"hs_cos_wrapper_widget_1633015557676\"]/div/div/div[2]/div/div/div/div/div/div/div/div[1]/a";
+		  driver.findElement(By.xpath(jobOpeningsXPath)).click();
+		  
+		  // Send keys to search input
+		  String searchXPath = "//*[@id=\"SearchInput\"]";
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(searchXPath)));
+		  WebElement searchElement = driver.findElement(By.xpath(searchXPath));
+		  action.moveToElement(searchElement).perform();
+		  searchElement.sendKeys("QA automation");
+		  
+		  // Click on the position
+		  String positionXPath = "//*[@id=\"Opportunity0\"]/div[1]/div[1]/h3/a";
+		  try { Thread.sleep(2500); } catch (InterruptedException e) { e.printStackTrace(); }
+		  driver.findElement(By.xpath(positionXPath)).click();		  
+		  
+		  // Find the requirement
+		  String requirementXPath = "//*[@id=\"opportunityDetailView\"]/div[2]/div/div/div/div[2]/div[1]/div[3]/p/ul[2]/li[2]";
+		  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(requirementXPath)));
+		  double years = (double) driver.findElement(By.xpath(requirementXPath)).getText().split(" ")[0].charAt(0);
+		  
+		  // Validation
+		  Assert.assertTrue(years > 1);
+	  }
+	  
+	  @Test
+	  public void testFive_Icons_And_Valide_Types() {
+
+		  String iconsXPath = "//*[@id=\"hs_cos_wrapper_site_footer-module-1\"]/footer/div[2]/div/div/div[2]/ul/li";
+		  List<WebElement> actualSocialMediaIcons = driver.findElements(By.xpath(iconsXPath));
+		  try {
+		  Assert.assertTrue(actualSocialMediaIcons.size() == 5);
+		  } catch(AssertionError e) {
+			  System.out.println("There are'nt 5 icons");
+		  }
+		  
+		  // Checking if a specific icon is missing 
+		  try {
+			  actualSocialMediaIcons.get(0).findElement(By.id("LinkedIn In1_layer"));
+		  } catch (AssertionError e) {
+			  System.out.println("The LinkedIn icon is missing");
+		  }
+		  try {
+			  actualSocialMediaIcons.get(1).findElement(By.id("YouTube2_layer"));
+		  } catch (AssertionError e) {
+			  System.out.println("The YouTube icon is missing");
+		  }
+		  try {
+			  actualSocialMediaIcons.get(2).findElement(By.id("Twitter3_layer"));
+		  } catch (AssertionError e) {
+			  System.out.println("The Twitter icon is missing");
+		  }
+		  try {
+			  actualSocialMediaIcons.get(3).findElement(By.id("Facebook F4_layer"));
+		  } catch (AssertionError e) {
+			  System.out.println("The Facebook icon is missing");
+		  }
+		  try {
+			  actualSocialMediaIcons.get(4).findElement(By.id("Instagram5_layer"));
+		  } catch (AssertionError e) {
+			  System.out.println("The Instagram icon is missing");
+		  }
+	  }
+	  
+	  @Test
+	  public void testEach_Icon_Opens_Relevant_App() {
+		  
+		  String iconsXPath = "//*[@id=\"hs_cos_wrapper_site_footer-module-1\"]/footer/div[2]/div/div/div[2]/ul/li";
+		  List<WebElement> actualSocialMediaIcons = driver.findElements(By.xpath(iconsXPath));
+
+		  try { 
+			  Assert.assertTrue(actualSocialMediaIcons.get(0).findElement(By.tagName("a")).getAttribute("href").contains("linkedin")); 
+			  } catch (AssertionError e) { 
+				  System.out.println("The Icon of LinkedIn is not open the relevant application."); 
+		  }
+		  
+		  try { 
+			  Assert.assertTrue(actualSocialMediaIcons.get(1).findElement(By.tagName("a")).getAttribute("href").contains("youtube"));
+			  } catch (AssertionError e) { 
+				  System.out.println("The Icon of YouTube is not open the relevant application."); 
+		  }
+		  
+		  try { 
+			  Assert.assertTrue(actualSocialMediaIcons.get(2).findElement(By.tagName("a")).getAttribute("href").contains("twitter")); 
+			  } catch (AssertionError e) { 
+				  System.out.println("The Icon of Twitter is not open the relevant application."); 
+		  }
+		  
+		  try { 
+			  Assert.assertTrue(actualSocialMediaIcons.get(3).findElement(By.tagName("a")).getAttribute("href").contains("facebook"));
+			  } catch (AssertionError e) { 
+				  System.out.println("The Icon of Facebook is not open the relevant application."); 
+		  }
+		  
+		  try { 
+			  Assert.assertTrue(actualSocialMediaIcons.get(4).findElement(By.tagName("a")).getAttribute("href").contains("instagram")); 
+			  } catch (AssertionError e) { 
+				  System.out.println("The Icon of Instagram is not open the relevant application."); 
+		  }
+	  }
+	  
+	  @Test
+	  public void testRemove_Positive() {
+		  String input = " Hello world! ";
+	        String expected = "Hello world!";
+	        String actual = Removal.remove(input);
+	        Assert.assertEquals(actual, expected);
+	  }
+	  
+	  @AfterClass
+	  public static void closeBrowser() {
+		  driver.quit();
+	  }
+
+}

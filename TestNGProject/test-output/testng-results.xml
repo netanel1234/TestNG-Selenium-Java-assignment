@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="1" ignored="0" total="8" passed="7">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="16841" started-at="2023-01-29T01:27:02 IST" finished-at="2023-01-29T01:27:19 IST">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="16841" started-at="2023-01-29T01:27:02 IST" finished-at="2023-01-29T01:27:19 IST">
+      <class name="test.NewTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:test.NewTest@7cbd213e]" name="setUp" is-config="true" duration-ms="6778" started-at="2023-01-29T01:27:02 IST" finished-at="2023-01-29T01:27:09 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="testEach_Icon_Opens_Relevant_App()[pri:0, instance:test.NewTest@7cbd213e]" name="testEach_Icon_Opens_Relevant_App" duration-ms="204" started-at="2023-01-29T01:27:09 IST" finished-at="2023-01-29T01:27:09 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testEach_Icon_Opens_Relevant_App -->
+        <test-method status="PASS" signature="testFive_Icons_And_Valide_Types()[pri:0, instance:test.NewTest@7cbd213e]" name="testFive_Icons_And_Valide_Types" duration-ms="71" started-at="2023-01-29T01:27:09 IST" finished-at="2023-01-29T01:27:09 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFive_Icons_And_Valide_Types -->
+        <test-method status="PASS" signature="testNavBar_Options()[pri:0, instance:test.NewTest@7cbd213e]" name="testNavBar_Options" duration-ms="395" started-at="2023-01-29T01:27:09 IST" finished-at="2023-01-29T01:27:09 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testNavBar_Options -->
+        <test-method status="PASS" signature="testRemove_EmptyString()[pri:0, instance:test.NewTest@7cbd213e]" name="testRemove_EmptyString" duration-ms="2" started-at="2023-01-29T01:27:09 IST" finished-at="2023-01-29T01:27:09 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRemove_EmptyString -->
+        <test-method status="PASS" signature="testRemove_NULL()[pri:0, instance:test.NewTest@7cbd213e]" name="testRemove_NULL" duration-ms="1" started-at="2023-01-29T01:27:09 IST" finished-at="2023-01-29T01:27:09 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRemove_NULL -->
+        <test-method status="PASS" signature="testRemove_Negative()[pri:0, instance:test.NewTest@7cbd213e]" name="testRemove_Negative" duration-ms="1" started-at="2023-01-29T01:27:09 IST" finished-at="2023-01-29T01:27:09 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRemove_Negative -->
+        <test-method status="PASS" signature="testRemove_Positive()[pri:0, instance:test.NewTest@7cbd213e]" name="testRemove_Positive" duration-ms="1" started-at="2023-01-29T01:27:09 IST" finished-at="2023-01-29T01:27:09 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRemove_Positive -->
+        <test-method status="FAIL" signature="testValidate_Years_Of_Experience_For_QA_Automation_Position()[pri:0, instance:test.NewTest@7cbd213e]" name="testValidate_Years_Of_Experience_For_QA_Automation_Position" duration-ms="8182" started-at="2023-01-29T01:27:09 IST" finished-at="2023-01-29T01:27:17 IST">
+          <exception class="java.lang.NumberFormatException">
+            <message>
+              <![CDATA[For input string: "Fluent"]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NumberFormatException: For input string: "Fluent"
+at sun.misc.FloatingDecimal.readJavaFormatString(Unknown Source)
+at sun.misc.FloatingDecimal.parseDouble(Unknown Source)
+at java.lang.Double.parseDouble(Unknown Source)
+at test.NewTest.testValidate_Years_Of_Experience_For_QA_Automation_Position(NewTest.java:100)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.util.ArrayList.forEach(Unknown Source)
+at org.testng.TestRunner.privateRun(TestRunner.java:794)
+at org.testng.TestRunner.run(TestRunner.java:596)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NumberFormatException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testValidate_Years_Of_Experience_For_QA_Automation_Position -->
+        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:test.NewTest@7cbd213e]" name="closeBrowser" is-config="true" duration-ms="1146" started-at="2023-01-29T01:27:17 IST" finished-at="2023-01-29T01:27:19 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- test.NewTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
